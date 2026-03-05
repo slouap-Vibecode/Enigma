@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { EnigmaData, EnigmaFormData } from '@/types/enigma';
+import confetti from 'canvas-confetti';
 
 interface EnigmaFormProps {
   enigmaId: string;
@@ -19,6 +20,19 @@ export default function EnigmaForm({ enigmaId, enigmaData }: EnigmaFormProps) {
     }, 0);
     setIsAllCorrect(correctCount === enigmaData.passwords.length);
   }, [formData, enigmaData.passwords]);
+
+  // Trigger confetti when user succeeds
+  useEffect(() => {
+    if (isAllCorrect) {
+      // Fire confetti animation
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff4757', '#2ed573', '#ffa502', '#3742fa', '#f368e0']
+      });
+    }
+  }, [isAllCorrect]);
 
   const handleInputChange = (index: number, value: string) => {
     setFormData(prev => ({
@@ -63,7 +77,10 @@ export default function EnigmaForm({ enigmaId, enigmaData }: EnigmaFormProps) {
         <input type="submit" value="Envoyer" />
       </form>
       {isAllCorrect && (
-        <p className="reward">{enigmaData.reward}</p>
+        <div>
+          <p className="reward">Félicitations ! Vous avez résolu l'énigme {enigmaId} avec succès !</p>
+          <p className="reward">{enigmaData.reward}</p>
+        </div>
       )}
     </>
   );
