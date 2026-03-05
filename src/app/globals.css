@@ -66,10 +66,18 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: var(--theme-bg-image-url, none);
-  background-position: var(--theme-bg-image-position, center);
-  background-size: var(--theme-bg-image-size, cover);
-  background-repeat: var(--theme-bg-image-repeat, no-repeat);
+  background-image:
+    var(--theme-bg-image-url-top-left, none),
+    var(--theme-bg-image-url, none);
+  background-position:
+    var(--theme-bg-image-position-top-left, top left),
+    var(--theme-bg-image-position, bottom right);
+  background-size:
+    var(--theme-bg-image-size-top-left, 450px 450px),
+    var(--theme-bg-image-size, 450px 450px);
+  background-repeat:
+    var(--theme-bg-image-repeat-top-left, no-repeat),
+    var(--theme-bg-image-repeat, no-repeat);
   opacity: var(--theme-bg-image-opacity, 0);
   pointer-events: none;
   z-index: -1;
