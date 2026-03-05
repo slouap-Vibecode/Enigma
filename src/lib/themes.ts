@@ -1,45 +1,6 @@
 import { Theme } from '@/types/theme';
 
-// Thème par défaut (actuel)
-export const defaultTheme: Theme = {
-  name: 'default',
-  displayName: 'Thème classique',
-  colors: {
-    background: '#000000',
-    backgroundSecondary: '#1a1a1a',
-    text: '#ffffff',
-    textSecondary: '#cccccc',
-    accent: '#ffffff',
-    accentHover: '#cccccc',
-    success: '#00ff00',
-    error: '#ff0000',
-    warning: '#ffff00',
-    border: '#ffffff',
-    buttonBackground: '#000000',
-    buttonText: '#ffffff',
-    buttonHoverBackground: '#ffffff',
-    buttonHoverText: '#000000',
-    inputBackground: '#ffffff',
-    inputBorder: '#000000',
-    rewardBackground: '#1a1a1a',
-    rewardBorder: '#333333',
-  },
-  fonts: {
-    primary: '"Open Sans", sans-serif',
-  },
-  shadows: {
-    card: 'none',
-    button: 'none',
-    input: 'none',
-  },
-  borderRadius: {
-    small: '4px',
-    medium: '8px',
-    large: '12px',
-  },
-};
-
-// Thème Detective Conan
+// Thème Detective Conan - Thème unique de l'application
 export const detectiveConanTheme: Theme = {
   name: 'detective-conan',
   displayName: '🔍 Detective Conan',
@@ -86,7 +47,5 @@ export const detectiveConanTheme: Theme = {
   },
 };
 
-export const themes = {
-  default: defaultTheme,
-  'detective-conan': detectiveConanTheme,
-};
+// Export du thème unique
+export default detectiveConanTheme;

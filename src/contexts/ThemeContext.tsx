@@ -1,46 +1,22 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Theme, ThemeName } from '@/types/theme';
-import { themes, defaultTheme } from '@/lib/themes';
+import React, { createContext, useContext, useEffect, ReactNode } from 'react';
+import { Theme } from '@/types/theme';
+import { detectiveConanTheme } from '@/lib/themes';
 
 interface ThemeContextType {
   theme: Theme;
-  themeName: ThemeName;
-  setTheme: (themeName: ThemeName) => void;
-  availableThemes: { name: ThemeName; displayName: string }[];
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-const THEME_STORAGE_KEY = 'enigma_theme_preference';
 
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [themeName, setThemeName] = useState<ThemeName>('default');
-
-  // Charger le thème depuis localStorage
-  useEffect(() => {
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) as ThemeName;
-    if (savedTheme && themes[savedTheme]) {
-      setThemeName(savedTheme);
-    }
-  }, []);
-
-  const setTheme = (newThemeName: ThemeName) => {
-    setThemeName(newThemeName);
-    localStorage.setItem(THEME_STORAGE_KEY, newThemeName);
-  };
-
-  const theme = themes[themeName] || defaultTheme;
-
-  const availableThemes = Object.values(themes).map(t => ({
-    name: t.name as ThemeName,
-    displayName: t.displayName
-  }));
+  // Utilise toujours le thème Detective Conan
+  const theme = detectiveConanTheme;
 
   // Appliquer les variables CSS pour le thème
   useEffect(() => {
@@ -99,7 +75,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, themeName, setTheme, availableThemes }}>
+    <ThemeContext.Provider value={{ theme }}>
       {children}
     </ThemeContext.Provider>
   );

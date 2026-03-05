@@ -43,5 +43,3 @@ export interface Theme {
     opacity?: number;
   };
 }
-
-export type ThemeName = 'default' | 'detective-conan';
