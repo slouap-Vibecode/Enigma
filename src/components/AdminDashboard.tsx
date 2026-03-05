@@ -219,8 +219,18 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
 
       <div className="select-enigma">
         {enigmas.map((enigma) => (
-          <div key={enigma} className="field" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+          <div key={enigma} className="field" style={{
+            display: 'flex',
+            alignItems: 'stretch',
+            justifyContent: 'space-between',
+            gap: '10px'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              flex: 1,
+              minHeight: '52px'
+            }}>
               <input
                 type="radio"
                 id={enigma}
@@ -240,12 +250,14 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
                   autoFocus
                   style={{
                     marginLeft: '10px',
-                    padding: '2px 5px',
+                    padding: '12px 15px',
                     border: '2px solid white',
-                    borderRadius: '3px',
+                    borderRadius: '6px',
                     backgroundColor: '#333',
                     color: 'white',
-                    fontSize: 'inherit'
+                    fontSize: 'inherit',
+                    height: '52px',
+                    boxSizing: 'border-box'
                   }}
                 />
               ) : (
@@ -268,7 +280,6 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
               rel="noopener noreferrer"
               className="btn"
               style={{
-                marginLeft: '10px',
                 padding: '12px 15px',
                 fontSize: 'small',
                 textDecoration: 'none',
@@ -277,6 +288,7 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
                 justifyContent: 'center',
                 height: '52px',
                 boxSizing: 'border-box',
+                flexShrink: 0,
                 opacity: editingEnigma === enigma ? 0.5 : 1,
                 pointerEvents: editingEnigma === enigma ? 'none' : 'auto'
               }}

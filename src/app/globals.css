@@ -183,20 +183,21 @@ input[type=radio] {
 }
 
 .select-enigma .field {
-  display: inline-block;
-  white-space: nowrap;
+  display: flex;
+  align-items: stretch;
   text-align: left;
   margin-top: 15px;
   margin-left: 15px;
   margin-right: 15px;
-  width: 100%;
+  width: calc(100% - 30px);
+  gap: 10px;
 }
 
 .select-enigma label {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   white-space: normal;
   padding: 12px 15px;
-  width: calc(100% - 55px);
   overflow: hidden;
   height: 52px;
   box-sizing: border-box;
@@ -206,8 +207,8 @@ input[type=radio] {
   color: var(--theme-text);
   border-radius: var(--theme-radius-small);
   box-shadow: var(--theme-shadow-input);
-  display: flex;
-  align-items: center;
+  flex: 1;
+  margin-left: 10px;
 }
 
 .select-enigma input[type=radio]:checked + label {
