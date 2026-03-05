@@ -15,6 +15,8 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showSessionInfo, setShowSessionInfo] = useState(false);
+  const [editingEnigma, setEditingEnigma] = useState<string | null>(null);
+  const [editingName, setEditingName] = useState('');
 
   // Afficher l'info de session au focus de la page
   useEffect(() => {
@@ -100,6 +102,55 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
     }
   };
 
+  const handleDoubleClick = (enigma: string) => {
+    setEditingEnigma(enigma);
+    setEditingName(enigma);
+  };
+
+  const handleRename = async (oldName: string, newName: string) => {
+    if (!newName.trim() || newName === oldName) {
+      setEditingEnigma(null);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('/api/admin/enigma/rename', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          oldName: oldName,
+          newName: newName.trim(),
+        }),
+      });
+
+      if (response.ok) {
+        await loadEnigmas();
+        setSelectedEnigma(''); // Désélectionner après renommage
+        setEditingEnigma(null);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || 'Erreur lors du renommage');
+      }
+    } catch (err) {
+      setError('Erreur de connexion');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent, oldName: string) => {
+    if (e.key === 'Enter') {
+      handleRename(oldName, editingName);
+    } else if (e.key === 'Escape') {
+      setEditingEnigma(null);
+      setEditingName('');
+    }
+  };
+
   if (newEnigma) {
     return (
       <CreateEnigmaForm
@@ -160,6 +211,12 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
         <input type="submit" value="+" className="plus-button" />
       </form>
 
+      {enigmas.length > 0 && (
+        <p style={{ fontSize: 'small', color: '#999', textAlign: 'center', marginBottom: '15px' }}>
+          💡 Double-cliquez sur un nom pour le renommer • Utilisez Entrée pour valider • Échap pour annuler
+        </p>
+      )}
+
       <div className="select-enigma">
         {enigmas.map((enigma) => (
           <div key={enigma} className="field" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -171,8 +228,39 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
                 value={enigma}
                 checked={selectedEnigma === enigma}
                 onChange={(e) => setSelectedEnigma(e.target.value)}
+                disabled={editingEnigma === enigma}
               />
-              <label htmlFor={enigma}>{enigma}</label>
+              {editingEnigma === enigma ? (
+                <input
+                  type="text"
+                  value={editingName}
+                  onChange={(e) => setEditingName(e.target.value)}
+                  onKeyDown={(e) => handleKeyPress(e, enigma)}
+                  onBlur={() => handleRename(enigma, editingName)}
+                  autoFocus
+                  style={{
+                    marginLeft: '10px',
+                    padding: '2px 5px',
+                    border: '2px solid white',
+                    borderRadius: '3px',
+                    backgroundColor: '#333',
+                    color: 'white',
+                    fontSize: 'inherit'
+                  }}
+                />
+              ) : (
+                <label
+                  htmlFor={enigma}
+                  onDoubleClick={() => handleDoubleClick(enigma)}
+                  style={{
+                    cursor: 'pointer',
+                    userSelect: 'none'
+                  }}
+                  title="Double-cliquez pour renommer"
+                >
+                  {enigma}
+                </label>
+              )}
             </div>
             <a
               href={`/?id=${encodeURIComponent(enigma)}`}
@@ -184,7 +272,9 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
                 padding: '5px 10px',
                 fontSize: 'small',
                 textDecoration: 'none',
-                display: 'inline-block'
+                display: 'inline-block',
+                opacity: editingEnigma === enigma ? 0.5 : 1,
+                pointerEvents: editingEnigma === enigma ? 'none' : 'auto'
               }}
               title={`Ouvrir l'énigme "${enigma}" dans un nouvel onglet`}
             >
