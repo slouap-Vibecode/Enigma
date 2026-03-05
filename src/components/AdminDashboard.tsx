@@ -240,13 +240,13 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
         {enigmas.map((enigma) => (
           <div key={enigma} className="field" style={{
             display: 'flex',
-            alignItems: 'stretch',
+            alignItems: 'flex-start',
             justifyContent: 'space-between',
-            gap: '10px'
+            gap: '5px'
           }}>
             <div style={{
               display: 'flex',
-              alignItems: 'center',
+              alignItems: 'flex-start',
               flex: 1,
               minHeight: '52px'
             }}>
@@ -298,24 +298,23 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
               className="btn"
               disabled={editingEnigma === enigma}
               style={{
-                padding: '12px 15px',
-                fontSize: 'small',
+                padding: '12px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                width: '52px',
                 height: '52px',
                 boxSizing: 'border-box',
                 flexShrink: 0,
                 opacity: editingEnigma === enigma ? 0.5 : 1,
                 pointerEvents: editingEnigma === enigma ? 'none' : 'auto',
-                marginRight: '10px'
+                marginRight: '5px'
               }}
               title={`Éditer l'énigme "${enigma}"`}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48" style={{ marginRight: '5px' }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
                 <path fill="currentColor" fillRule="evenodd" d="M35.5226 3.85398L33.3386 6.04201L41.9345 14.6508L44.1202 12.461L44.2555 12.3163C45.2922 11.1324 45.2471 9.32292 44.1202 8.1934L39.7882 3.85447L39.6478 3.72321C38.4935 2.71687 36.6138 2.76104 35.5226 3.85398ZM39.8141 16.7751L31.2182 8.16622L6.0138 33.4168L5.91194 33.5297C5.78419 33.6867 5.68919 33.8685 5.63294 34.0647L3.05775 43.0866L3.02427 43.23C2.93675 43.7103 3.08864 44.2073 3.43665 44.5573C3.72181 44.8446 4.10657 45 4.50013 45C4.63489 45 4.77161 44.9814 4.90443 44.9443L13.9542 42.4084L14.1003 42.3592C14.2911 42.2839 14.4654 42.1697 14.6115 42.0243L39.8141 16.7751Z" clipRule="evenodd"/>
               </svg>
-              Éditer
             </button>
             <a
               href={`/?id=${encodeURIComponent(enigma)}`}
@@ -323,12 +322,12 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
               rel="noopener noreferrer"
               className="btn"
               style={{
-                padding: '12px 15px',
-                fontSize: 'small',
+                padding: '12px',
                 textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                width: '52px',
                 height: '52px',
                 boxSizing: 'border-box',
                 flexShrink: 0,
@@ -337,7 +336,9 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
               }}
               title={`Ouvrir l'énigme "${enigma}" dans un nouvel onglet`}
             >
-              🔗 Ouvrir
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                <path fill="currentColor" fillRule="evenodd" d="M25.4745 29.9712C25.4745 28.8666 24.5791 27.9712 23.4745 27.9712C22.6166 27.9712 21.1258 27.2693 20.4833 26.5734C17.8897 23.9776 17.8897 19.862 20.4281 17.3236L30.3276 7.42411C32.866 4.88571 36.9816 4.88571 39.52 7.42411C42.0584 9.96253 42.0584 14.0781 39.52 16.6165L35.0632 21.0525C34.2803 21.8318 34.2773 23.0981 35.0565 23.881C35.8358 24.6638 37.1021 24.6668 37.885 23.8876L42.3451 19.4482C46.4489 15.3444 46.4489 8.6962 42.3484 4.59569C38.2479 0.495186 31.5997 0.495182 27.4992 4.59569L17.5997 14.4952C13.4992 18.5957 13.4992 25.2439 17.5997 29.3444C18.9191 30.7756 21.4583 31.9712 23.4745 31.9712C24.5791 31.9712 25.4745 31.0757 25.4745 29.9712ZM22.4704 17.9722C22.4704 19.0768 23.3658 19.9722 24.4704 19.9722C25.3283 19.9722 26.8191 20.6741 27.4616 21.3699C30.0552 23.9658 30.0552 28.0813 27.5168 30.6198L17.6173 40.5192C15.0789 43.0577 10.9633 43.0577 8.42488 40.5192C5.88647 37.9808 5.88647 33.8653 8.42488 31.3269L12.8817 26.8908C13.6646 26.1116 13.6676 24.8453 12.8883 24.0624C12.1091 23.2795 10.8428 23.2766 10.0599 24.0558L5.59976 28.4951C1.49595 32.5989 1.49594 39.2472 5.59645 43.3477C9.69695 47.4482 16.3452 47.4482 20.4457 43.3477L30.3452 33.4482C34.4457 29.3477 34.4457 22.6994 30.3452 18.5989C29.0258 17.1677 26.4866 15.9722 24.4704 15.9722C23.3658 15.9722 22.4704 16.8676 22.4704 17.9722Z" clipRule="evenodd"/>
+              </svg>
             </a>
           </div>
         ))}

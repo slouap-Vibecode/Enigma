@@ -59,11 +59,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     // Appliquer l'image de fond si elle existe
     if (theme.backgroundImage) {
       root.style.setProperty('--theme-bg-image-url', `url('${theme.backgroundImage.url}')`);
-      // Add top-left background image
-      root.style.setProperty('--theme-bg-image-url-top-left', `url('/images/conan-top-left.png')`);
-      root.style.setProperty('--theme-bg-image-position-top-left', 'top left');
-      root.style.setProperty('--theme-bg-image-size-top-left', '450px 450px');
-      root.style.setProperty('--theme-bg-image-repeat-top-left', 'no-repeat');
       root.style.setProperty('--theme-bg-image-position', theme.backgroundImage.position);
       root.style.setProperty('--theme-bg-image-size', theme.backgroundImage.size);
       root.style.setProperty('--theme-bg-image-repeat', theme.backgroundImage.repeat);
@@ -71,15 +66,17 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     } else {
       // Supprimer les propriétés de background image si pas de thème avec image
       root.style.removeProperty('--theme-bg-image-url');
-      root.style.removeProperty('--theme-bg-image-url-top-left');
       root.style.removeProperty('--theme-bg-image-position');
-      root.style.removeProperty('--theme-bg-image-position-top-left');
       root.style.removeProperty('--theme-bg-image-size');
-      root.style.removeProperty('--theme-bg-image-size-top-left');
       root.style.removeProperty('--theme-bg-image-repeat');
-      root.style.removeProperty('--theme-bg-image-repeat-top-left');
       root.style.removeProperty('--theme-bg-image-opacity');
     }
+
+    // Always remove top-left background image properties
+    root.style.removeProperty('--theme-bg-image-url-top-left');
+    root.style.removeProperty('--theme-bg-image-position-top-left');
+    root.style.removeProperty('--theme-bg-image-size-top-left');
+    root.style.removeProperty('--theme-bg-image-repeat-top-left');
 
   }, [theme]);
 

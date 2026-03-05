@@ -66,18 +66,10 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image:
-    var(--theme-bg-image-url-top-left, none),
-    var(--theme-bg-image-url, none);
-  background-position:
-    var(--theme-bg-image-position-top-left, top left),
-    var(--theme-bg-image-position, bottom right);
-  background-size:
-    var(--theme-bg-image-size-top-left, 450px 450px),
-    var(--theme-bg-image-size, 450px 450px);
-  background-repeat:
-    var(--theme-bg-image-repeat-top-left, no-repeat),
-    var(--theme-bg-image-repeat, no-repeat);
+  background-image: var(--theme-bg-image-url, none);
+  background-position: var(--theme-bg-image-position, bottom right);
+  background-size: var(--theme-bg-image-size, 450px 450px);
+  background-repeat: var(--theme-bg-image-repeat, no-repeat);
   opacity: var(--theme-bg-image-opacity, 0);
   pointer-events: none;
   z-index: -1;
@@ -192,13 +184,14 @@ input[type=radio] {
 
 .select-enigma .field {
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  justify-content: space-between;
   text-align: left;
-  margin-top: 15px;
+  margin-top: 8px;
   margin-left: 15px;
   margin-right: 15px;
   width: calc(100% - 30px);
-  gap: 10px;
+  gap: 5px;
 }
 
 .select-enigma label {
@@ -207,7 +200,8 @@ input[type=radio] {
   white-space: normal;
   padding: 12px 15px;
   overflow: hidden;
-  height: 52px;
+  min-height: 52px;
+  height: auto;
   box-sizing: border-box;
   border: 2px solid #3D5AA1;
   cursor: pointer;
