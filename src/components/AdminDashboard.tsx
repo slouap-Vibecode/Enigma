@@ -14,6 +14,18 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
   const [selectedEnigma, setSelectedEnigma] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showSessionInfo, setShowSessionInfo] = useState(false);
+
+  // Afficher l'info de session au focus de la page
+  useEffect(() => {
+    const handleFocus = () => {
+      setShowSessionInfo(true);
+      setTimeout(() => setShowSessionInfo(false), 2000);
+    };
+
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, []);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -115,6 +127,22 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
 
       <h1>Enigma</h1>
 
+      {showSessionInfo && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          padding: '10px 15px',
+          borderRadius: '5px',
+          zIndex: 1000,
+          fontSize: 'small'
+        }}>
+          ✅ Session maintenue - Connecté en tant qu'admin
+        </div>
+      )}
+
       {error && (
         <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>
       )}
@@ -134,16 +162,34 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
 
       <div className="select-enigma">
         {enigmas.map((enigma) => (
-          <div key={enigma} className="field">
-            <input
-              type="radio"
-              id={enigma}
-              name="del"
-              value={enigma}
-              checked={selectedEnigma === enigma}
-              onChange={(e) => setSelectedEnigma(e.target.value)}
-            />
-            <label htmlFor={enigma}>{enigma}</label>
+          <div key={enigma} className="field" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+              <input
+                type="radio"
+                id={enigma}
+                name="del"
+                value={enigma}
+                checked={selectedEnigma === enigma}
+                onChange={(e) => setSelectedEnigma(e.target.value)}
+              />
+              <label htmlFor={enigma}>{enigma}</label>
+            </div>
+            <a
+              href={`/?id=${encodeURIComponent(enigma)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+              style={{
+                marginLeft: '10px',
+                padding: '5px 10px',
+                fontSize: 'small',
+                textDecoration: 'none',
+                display: 'inline-block'
+              }}
+              title={`Ouvrir l'énigme "${enigma}" dans un nouvel onglet`}
+            >
+              🔗 Ouvrir
+            </a>
           </div>
         ))}
       </div>
@@ -282,7 +328,17 @@ function CreateEnigmaForm({ enigmaName, token, onCancel, onSuccess }: CreateEnig
             type="submit"
             value={loading ? 'Création...' : 'Envoyer'}
             disabled={loading}
+            style={{ marginRight: '10px' }}
           />
+          <a
+            href={`/?id=${encodeURIComponent(enigmaName)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn"
+            title={`Prévisualiser l'énigme "${enigmaName}"`}
+          >
+            🔗 Prévisualiser
+          </a>
         </div>
       </form>
     </div>
