@@ -80,7 +80,7 @@ export const detectiveConanTheme: Theme = {
   backgroundImage: {
     url: '/images/conan-background.png',
     position: 'bottom right',
-    size: '300px 300px',
+    size: '450px 450px',
     repeat: 'no-repeat',
     opacity: 0.2,
   },
