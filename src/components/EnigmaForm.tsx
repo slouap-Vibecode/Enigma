@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { EnigmaData, EnigmaFormData } from '@/types/enigma';
+import ThemeSelector from '@/components/ThemeSelector';
 
 interface EnigmaFormProps {
   enigmaId: string;
@@ -42,6 +43,17 @@ export default function EnigmaForm({ enigmaId, enigmaData }: EnigmaFormProps) {
 
   return (
     <>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '10px',
+        flexWrap: 'wrap',
+        gap: '10px'
+      }}>
+        <div style={{ flex: 1 }} />
+        <ThemeSelector />
+      </div>
       <p className="enigma-title">{enigmaId}</p>
       <form onSubmit={handleSubmit}>
         {enigmaData.passwords.map((_, index) => {

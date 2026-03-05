@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <Suspense fallback={<div>Chargement...</div>}>
-          {children}
-        </Suspense>
+        <ThemeProvider>
+          <Suspense fallback={<div>Chargement...</div>}>
+            {children}
+          </Suspense>
+        </ThemeProvider>
       </body>
     </html>
   );

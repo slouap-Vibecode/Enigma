@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { EnigmaData } from '@/types/enigma';
 import EnigmaForm from '@/components/EnigmaForm';
+import ThemeSelector from '@/components/ThemeSelector';
 
 interface EnigmaPageProps {
   initialId?: string;
@@ -48,11 +49,20 @@ export default function EnigmaPage({ initialId }: EnigmaPageProps) {
 
   if (!enigmaId) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1>Enigma</h1>
-          <p>Pour accéder à une énigme, utilisez le paramètre ?id=nom_enigme</p>
-          <p>Exemple: <code>?id=test</code></p>
+      <div className="min-h-screen">
+        <div style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          padding: '10px'
+        }}>
+          <ThemeSelector />
+        </div>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1>Enigma</h1>
+            <p>Pour accéder à une énigme, utilisez le paramètre ?id=nom_enigme</p>
+            <p>Exemple: <code>?id=test</code></p>
+          </div>
         </div>
       </div>
     );
@@ -60,18 +70,36 @@ export default function EnigmaPage({ initialId }: EnigmaPageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Chargement...</p>
+      <div className="min-h-screen">
+        <div style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          padding: '10px'
+        }}>
+          <ThemeSelector />
+        </div>
+        <div className="min-h-screen flex items-center justify-center">
+          <p>Chargement...</p>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1>Erreur</h1>
-          <p>{error}</p>
+      <div className="min-h-screen">
+        <div style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          padding: '10px'
+        }}>
+          <ThemeSelector />
+        </div>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1>Erreur</h1>
+            <p>{error}</p>
+          </div>
         </div>
       </div>
     );
@@ -79,8 +107,17 @@ export default function EnigmaPage({ initialId }: EnigmaPageProps) {
 
   if (!enigmaData) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Aucune énigme trouvée</p>
+      <div className="min-h-screen">
+        <div style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          padding: '10px'
+        }}>
+          <ThemeSelector />
+        </div>
+        <div className="min-h-screen flex items-center justify-center">
+          <p>Aucune énigme trouvée</p>
+        </div>
       </div>
     );
   }

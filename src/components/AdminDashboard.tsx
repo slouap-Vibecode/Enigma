@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import ThemeSelector from '@/components/ThemeSelector';
 
 interface AdminDashboardProps {
   token: string;
@@ -167,7 +168,15 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
 
   return (
     <div className="min-h-screen">
-      <div style={{ textAlign: 'right' }}>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '10px',
+        flexWrap: 'wrap',
+        gap: '10px'
+      }}>
+        <ThemeSelector />
         <button
           className="logout btn"
           onClick={onLogout}

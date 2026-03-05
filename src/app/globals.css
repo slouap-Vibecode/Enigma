@@ -1,5 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 @import "tailwindcss";
+
+/* Variables par défaut (thème classique) */
+:root {
+  --theme-background: #000000;
+  --theme-background-secondary: #1a1a1a;
+  --theme-text: #ffffff;
+  --theme-text-secondary: #cccccc;
+  --theme-accent: #ffffff;
+  --theme-accent-hover: #cccccc;
+  --theme-success: #00ff00;
+  --theme-error: #ff0000;
+  --theme-warning: #ffff00;
+  --theme-border: #ffffff;
+  --theme-button-bg: #000000;
+  --theme-button-text: #ffffff;
+  --theme-button-hover-bg: #ffffff;
+  --theme-button-hover-text: #000000;
+  --theme-input-bg: #ffffff;
+  --theme-input-border: #000000;
+  --theme-reward-bg: #1a1a1a;
+  --theme-reward-border: #333333;
+  --theme-font-primary: "Ubuntu", sans-serif;
+  --theme-font-secondary: "Ubuntu", sans-serif;
+  --theme-shadow-card: none;
+  --theme-shadow-button: none;
+  --theme-shadow-input: none;
+  --theme-radius-small: 4px;
+  --theme-radius-medium: 8px;
+  --theme-radius-large: 12px;
+}
 
 /* Mobile (full width) */
 @media only screen and (max-width: 499px) {
@@ -20,10 +51,12 @@
 }
 
 body {
-  font-family: "Ubuntu", sans-serif;
-  background-color: black;
-  color: white;
+  font-family: var(--theme-font-primary);
+  background: var(--theme-background);
+  color: var(--theme-text);
   font-size: x-large;
+  min-height: 100vh;
+  transition: all 0.3s ease;
 }
 
 h1 {
@@ -58,7 +91,12 @@ input, button, textarea {
   margin-left: 10px;
   margin-right: 15px;
   font-size: x-large;
-  border: none;
+  border: 2px solid var(--theme-input-border);
+  background: var(--theme-input-bg);
+  color: var(--theme-text);
+  border-radius: var(--theme-radius-small);
+  box-shadow: var(--theme-shadow-input);
+  font-family: var(--theme-font-primary);
 }
 
 input:focus, textarea:focus {
@@ -78,18 +116,23 @@ input[type=submit], input[type=button], .btn {
   margin-left: auto;
   margin-right: auto;
   padding: 15px 10px;
-  background-color: black;
-  border: solid medium white;
-  color: white;
+  background: var(--theme-button-bg);
+  border: solid medium var(--theme-border);
+  color: var(--theme-button-text);
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  border-radius: var(--theme-radius-medium);
+  box-shadow: var(--theme-shadow-button);
+  transition: all 0.2s ease;
+  font-family: var(--theme-font-primary);
 }
 
 input[type=submit]:hover, input[type=button]:hover, .btn:hover {
-  background-color: white;
-  color: black;
+  background: var(--theme-button-hover-bg);
+  color: var(--theme-button-hover-text);
+  transform: translateY(-2px);
 }
 
 .logout {
@@ -100,11 +143,11 @@ input[type=submit]:hover, input[type=button]:hover, .btn:hover {
 }
 
 .input-good {
-  background-color: green !important;
+  background-color: var(--theme-success) !important;
 }
 
 .input-bad {
-  background-color: red !important;
+  background-color: var(--theme-error) !important;
 }
 
 input[type=radio] {
@@ -114,11 +157,13 @@ input[type=radio] {
 .reward {
   margin-left: 5px;
   margin-right: 5px;
-  background-color: #1a1a1a;
+  background-color: var(--theme-reward-bg);
   padding: 20px;
-  border-radius: 8px;
-  border: 2px solid #333;
+  border-radius: var(--theme-radius-medium);
+  border: 2px solid var(--theme-reward-border);
   font-weight: bold;
+  box-shadow: var(--theme-shadow-card);
+  color: var(--theme-text);
 }
 
 .select-enigma .field {
@@ -138,16 +183,23 @@ input[type=radio] {
   width: calc(100% - 55px);
   overflow: scroll;
   padding-right: 15px;
-  border: solid black medium;
+  border: solid var(--theme-input-border) medium;
   cursor: pointer;
+  background: var(--theme-input-bg);
+  color: var(--theme-text);
+  border-radius: var(--theme-radius-small);
+  box-shadow: var(--theme-shadow-input);
 }
 
 .select-enigma input[type=radio]:checked + label {
-  border: solid white medium;
+  border: solid var(--theme-accent) medium;
+  background: var(--theme-accent);
+  color: var(--theme-button-hover-text);
 }
 
 .select-enigma :not(input[type=radio]:checked) + label:hover {
-  border: dotted white medium;
+  border: dotted var(--theme-accent-hover) medium;
+  background: var(--theme-background-secondary);
 }
 
 .plus-button {

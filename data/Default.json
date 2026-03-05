@@ -1,4 +1,7 @@
 {
-  "passwords": ["arbre", "brebis"],
+  "passwords": [
+    "arbre",
+    "brebis"
+  ],
   "reward": "Félicitations ! Vous avez résolu l'énigme test avec succès !"
 }
