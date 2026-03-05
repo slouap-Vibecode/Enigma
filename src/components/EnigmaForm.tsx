@@ -78,7 +78,6 @@ export default function EnigmaForm({ enigmaId, enigmaData }: EnigmaFormProps) {
       </form>
       {isAllCorrect && (
         <div>
-          <p className="reward">Félicitations ! Vous avez résolu l'énigme {enigmaId} avec succès !</p>
           <p className="reward">{enigmaData.reward}</p>
         </div>
       )}
