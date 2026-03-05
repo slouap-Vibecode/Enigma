@@ -258,3 +258,30 @@ input[type=radio] {
 .supprimer-button {
   padding: 4px 8px !important;
 }
+
+.floating-admin-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  background: var(--theme-button-bg);
+  border: 2px solid var(--theme-border);
+  border-radius: var(--theme-radius-medium);
+  color: var(--theme-button-text);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: var(--theme-shadow-button);
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.floating-admin-btn:hover {
+  background: var(--theme-button-hover-bg);
+  color: var(--theme-button-hover-text);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}

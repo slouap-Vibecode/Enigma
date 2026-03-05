@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { EnigmaData } from '@/types/enigma';
 import EnigmaForm from '@/components/EnigmaForm';
+import Link from 'next/link';
 
 interface EnigmaPageProps {
   initialId?: string;
@@ -14,6 +15,17 @@ export default function EnigmaPage({ initialId }: EnigmaPageProps) {
   const [error, setError] = useState<string | null>(null);
 
   const enigmaId = initialId;
+
+  // Floating admin button component
+  const FloatingAdminButton = () => (
+    <Link
+      href="/admin"
+      className="floating-admin-btn"
+      title="Accéder à l'administration"
+    >
+      ⚙️
+    </Link>
+  );
 
   useEffect(() => {
     if (!enigmaId) {
@@ -48,46 +60,61 @@ export default function EnigmaPage({ initialId }: EnigmaPageProps) {
 
   if (!enigmaId) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1>Enigma</h1>
-          <p>Pour accéder à une énigme, utilisez le paramètre ?id=nom_enigme</p>
-          <p>Exemple: <code>?id=test</code></p>
+      <>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1>Enigma</h1>
+            <p>Pour accéder à une énigme, utilisez le paramètre ?id=nom_enigme</p>
+            <p>Exemple: <code>?id=test</code></p>
+          </div>
         </div>
-      </div>
+        <FloatingAdminButton />
+      </>
     );
   }
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Chargement...</p>
-      </div>
+      <>
+        <div className="min-h-screen flex items-center justify-center">
+          <p>Chargement...</p>
+        </div>
+        <FloatingAdminButton />
+      </>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1>Erreur</h1>
-          <p>{error}</p>
+      <>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1>Erreur</h1>
+            <p>{error}</p>
+          </div>
         </div>
-      </div>
+        <FloatingAdminButton />
+      </>
     );
   }
 
   if (!enigmaData) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Aucune énigme trouvée</p>
-      </div>
+      <>
+        <div className="min-h-screen flex items-center justify-center">
+          <p>Aucune énigme trouvée</p>
+        </div>
+        <FloatingAdminButton />
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen">
-      <EnigmaForm enigmaId={enigmaId} enigmaData={enigmaData} />
-    </div>
+    <>
+      <div className="min-h-screen">
+        <EnigmaForm enigmaId={enigmaId} enigmaData={enigmaData} />
+      </div>
+      <FloatingAdminButton />
+    </>
   );
 }
