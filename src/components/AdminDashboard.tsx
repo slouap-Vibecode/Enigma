@@ -269,10 +269,14 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
               className="btn"
               style={{
                 marginLeft: '10px',
-                padding: '5px 10px',
+                padding: '12px 15px',
                 fontSize: 'small',
                 textDecoration: 'none',
-                display: 'inline-block',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '52px',
+                boxSizing: 'border-box',
                 opacity: editingEnigma === enigma ? 0.5 : 1,
                 pointerEvents: editingEnigma === enigma ? 'none' : 'auto'
               }}
@@ -287,7 +291,7 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
       {enigmas.length > 0 && (
         <div style={{ textAlign: 'center' }}>
           <button
-            className="btn"
+            className="btn supprimer-button"
             onClick={handleDeleteSelected}
             disabled={!selectedEnigma || loading}
           >
