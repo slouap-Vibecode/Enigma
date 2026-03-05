@@ -75,6 +75,55 @@ export async function POST(request: NextRequest) {
   }
 }
 
+export async function PUT(request: NextRequest) {
+  if (!verifyToken(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const { name, passwords, reward }: CreateEnigmaRequest = await request.json();
+
+    if (!name || !passwords || !reward) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    // Filter out empty passwords
+    const filteredPasswords = passwords.filter(p => p.trim() !== '');
+
+    if (filteredPasswords.length === 0) {
+      return NextResponse.json(
+        { error: 'At least one password is required' },
+        { status: 400 }
+      );
+    }
+
+    const enigmaData = {
+      passwords: filteredPasswords,
+      reward: reward.trim()
+    };
+
+    const success = writeEnigmaData(name, enigmaData);
+
+    if (success) {
+      return NextResponse.json({ success: true });
+    } else {
+      return NextResponse.json(
+        { error: 'Failed to update enigma' },
+        { status: 500 }
+      );
+    }
+  } catch (error) {
+    console.error('Error updating enigma:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function DELETE(request: NextRequest) {
   if (!verifyToken(request)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
