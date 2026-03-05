@@ -25,7 +25,7 @@ export const defaultTheme: Theme = {
     rewardBorder: '#333333',
   },
   fonts: {
-    primary: '"Ubuntu", sans-serif',
+    primary: '"Open Sans", sans-serif',
   },
   shadows: {
     card: 'none',
@@ -64,8 +64,8 @@ export const detectiveConanTheme: Theme = {
     rewardBorder: '#ff4757',
   },
   fonts: {
-    primary: '"Crimson Text", "Times New Roman", serif',
-    secondary: '"Courier New", monospace',
+    primary: '"Open Sans", sans-serif',
+    secondary: '"Open Sans", sans-serif',
   },
   shadows: {
     card: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',

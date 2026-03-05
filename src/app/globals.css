@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 /* Variables par défaut (thème classique) */
@@ -22,8 +21,8 @@
   --theme-input-border: #000000;
   --theme-reward-bg: #1a1a1a;
   --theme-reward-border: #333333;
-  --theme-font-primary: "Ubuntu", sans-serif;
-  --theme-font-secondary: "Ubuntu", sans-serif;
+  --theme-font-primary: "Open Sans", sans-serif;
+  --theme-font-secondary: "Open Sans", sans-serif;
   --theme-shadow-card: none;
   --theme-shadow-button: none;
   --theme-shadow-input: none;
