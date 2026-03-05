@@ -298,7 +298,7 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
               className="btn"
               disabled={editingEnigma === enigma}
               style={{
-                padding: '12px',
+                padding: '0',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -308,6 +308,7 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
                 flexShrink: 0,
                 opacity: editingEnigma === enigma ? 0.5 : 1,
                 pointerEvents: editingEnigma === enigma ? 'none' : 'auto',
+                marginTop: '12px',
                 marginRight: '5px'
               }}
               title={`Éditer l'énigme "${enigma}"`}
@@ -322,7 +323,7 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
               rel="noopener noreferrer"
               className="btn"
               style={{
-                padding: '12px',
+                padding: '0',
                 textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -332,7 +333,8 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
                 boxSizing: 'border-box',
                 flexShrink: 0,
                 opacity: editingEnigma === enigma ? 0.5 : 1,
-                pointerEvents: editingEnigma === enigma ? 'none' : 'auto'
+                pointerEvents: editingEnigma === enigma ? 'none' : 'auto',
+                marginTop: '12px'
               }}
               title={`Ouvrir l'énigme "${enigma}" dans un nouvel onglet`}
             >

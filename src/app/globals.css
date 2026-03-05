@@ -145,6 +145,14 @@ input[type=submit], input[type=button], .btn {
   font-family: var(--theme-font-primary);
 }
 
+/* Square buttons override for admin interface */
+.select-enigma .btn {
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 52px !important;
+  height: 52px !important;
+}
+
 input[type=submit]:hover, input[type=button]:hover, .btn:hover {
   background: var(--theme-button-hover-bg);
   color: var(--theme-button-hover-text);
@@ -200,8 +208,7 @@ input[type=radio] {
   white-space: normal;
   padding: 12px 15px;
   overflow: hidden;
-  min-height: 52px;
-  height: auto;
+  height: 52px;
   box-sizing: border-box;
   border: 2px solid #3D5AA1;
   cursor: pointer;
