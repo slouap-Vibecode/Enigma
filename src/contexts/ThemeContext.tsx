@@ -80,6 +80,22 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     root.style.setProperty('--theme-radius-medium', theme.borderRadius.medium);
     root.style.setProperty('--theme-radius-large', theme.borderRadius.large);
 
+    // Appliquer l'image de fond si elle existe
+    if (theme.backgroundImage) {
+      root.style.setProperty('--theme-bg-image-url', `url('${theme.backgroundImage.url}')`);
+      root.style.setProperty('--theme-bg-image-position', theme.backgroundImage.position);
+      root.style.setProperty('--theme-bg-image-size', theme.backgroundImage.size);
+      root.style.setProperty('--theme-bg-image-repeat', theme.backgroundImage.repeat);
+      root.style.setProperty('--theme-bg-image-opacity', theme.backgroundImage.opacity?.toString() || '1');
+    } else {
+      // Supprimer les propriétés de background image si pas de thème avec image
+      root.style.removeProperty('--theme-bg-image-url');
+      root.style.removeProperty('--theme-bg-image-position');
+      root.style.removeProperty('--theme-bg-image-size');
+      root.style.removeProperty('--theme-bg-image-repeat');
+      root.style.removeProperty('--theme-bg-image-opacity');
+    }
+
   }, [theme]);
 
   return (

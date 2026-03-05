@@ -35,6 +35,13 @@ export interface Theme {
     medium: string;
     large: string;
   };
+  backgroundImage?: {
+    url: string;
+    position: string;
+    size: string;
+    repeat: string;
+    opacity?: number;
+  };
 }
 
 export type ThemeName = 'default' | 'detective-conan';

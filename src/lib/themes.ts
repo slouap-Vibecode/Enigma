@@ -77,6 +77,13 @@ export const detectiveConanTheme: Theme = {
     medium: '10px',
     large: '15px',
   },
+  backgroundImage: {
+    url: '/images/conan-background.svg',
+    position: 'bottom right',
+    size: '300px 300px',
+    repeat: 'no-repeat',
+    opacity: 0.15,
+  },
 };
 
 export const themes = {
