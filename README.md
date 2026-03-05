@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Enigma - Next.js Version
 
-## Getting Started
+A modern Next.js implementation of the Enigma riddle platform, originally created as a PHP application.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🧩 Create and solve interactive riddles
+- 🔐 Secure admin interface for riddle management
+- 📱 Responsive design (mobile and desktop)
+- ⚡ Modern React/Next.js architecture
+- 🚀 Ready for Vercel deployment
+- 🎨 Dark theme matching the original design
+
+## Quick Start
+
+### Local Development
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local and set your ADMIN_TOKEN
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Visit the application**
+   - Main site: http://localhost:3000
+   - Test riddle: http://localhost:3000?id=test
+   - Admin interface: http://localhost:3000/admin
+
+### Production Deployment on Vercel
+
+1. **Deploy to Vercel**
+   ```bash
+   npx vercel
+   ```
+
+2. **Set environment variables in Vercel dashboard**
+   - `ADMIN_TOKEN`: Your secure admin token
+
+3. **Access your deployed app**
+   - Main site: `https://your-app.vercel.app`
+   - Admin: `https://your-app.vercel.app/admin`
+
+## Usage
+
+### Creating Riddles
+
+1. Go to `/admin`
+2. Enter your admin token
+3. Create a new riddle by entering a name
+4. Add password fields and a reward message
+5. Save the riddle
+
+### Solving Riddles
+
+1. Visit `/?id=riddle-name` where `riddle-name` is the name of your riddle
+2. Fill in the answer fields
+3. Correct answers turn green, incorrect ones turn red
+4. When all answers are correct, the reward is displayed
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── admin/              # Admin interface pages
+│   ├── api/                # API routes for riddles and admin
+│   ├── globals.css         # Global styles (ported from original)
+│   ├── layout.tsx          # Root layout
+│   └── page.tsx            # Main riddle page
+├── components/
+│   ├── AdminDashboard.tsx  # Admin management interface
+│   ├── AdminLogin.tsx      # Admin authentication
+│   └── EnigmaForm.tsx      # Riddle solving form
+├── lib/
+│   ├── config.ts           # Configuration settings
+│   └── fileUtils.ts        # File system operations
+└── types/
+    └── enigma.ts           # TypeScript type definitions
+
+data/                       # Riddle JSON files
+public/                     # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Endpoints
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Public Endpoints
+- `GET /api/enigma/[id]` - Get riddle data
+- `GET /api/enigma` - List all riddles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Admin Endpoints (require Authorization header)
+- `POST /api/admin/auth` - Authenticate admin token
+- `GET /api/admin/enigma` - List riddles (admin)
+- `POST /api/admin/enigma` - Create new riddle
+- `DELETE /api/admin/enigma?id=[id]` - Delete riddle
 
-## Learn More
+## Data Format
 
-To learn more about Next.js, take a look at the following resources:
+Riddles are stored as JSON files in the `data/` directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```json
+{
+  "passwords": ["answer1", "answer2", "answer3"],
+  "reward": "Congratulations! You solved the riddle!"
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Security Features
 
-## Deploy on Vercel
+- Admin token authentication
+- Input sanitization
+- Protected data directory
+- No direct file access from web
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Migration from Original PHP Version
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This Next.js version maintains 100% feature compatibility with the original PHP Enigma application:
+
+- Same URL structure (`?id=riddle-name`)
+- Identical UI and styling
+- Same admin functionality
+- Compatible JSON file format
+
+## Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `ADMIN_TOKEN` | Secret token for admin access | Yes |
+
+## License
+
+This project maintains the same open-source nature as the original Enigma PHP application.

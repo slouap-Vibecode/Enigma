@@ -1,26 +1,179 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Mobile (full width) */
+@media only screen and (max-width: 499px) {
+  body {
+    width: 100%;
+    margin-left: 5px;
+  }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Desktop (max 500px width) */
+@media only screen and (min-width: 500px) {
+  body {
+    width: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Ubuntu", sans-serif;
+  background-color: black;
+  color: white;
+  font-size: x-large;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+.enigma-title {
+  text-align: center;
+  margin: 10px 5px;
+}
+
+form {
+  text-align: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+input, button, textarea {
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+  font-size: x-large;
+  border: none;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+textarea {
+  height: unset;
+  resize: vertical;
+}
+
+input[type=submit], input[type=button], .btn {
+  width: auto;
+  line-height: 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 10px;
+  background-color: black;
+  border: solid medium white;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+input[type=submit]:hover, input[type=button]:hover, .btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.logout {
+  font-size: small;
+  text-decoration: none;
+  padding: 0 2px;
+  margin-right: 15px;
+}
+
+.input-good {
+  background-color: green !important;
+}
+
+.input-bad {
+  background-color: red !important;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+.reward {
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #333;
+  font-weight: bold;
+}
+
+.select-enigma .field {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 100%;
+}
+
+.select-enigma label {
+  display: inline-block;
+  white-space: normal;
+  padding: 1px 5px;
+  width: calc(100% - 55px);
+  overflow: scroll;
+  padding-right: 15px;
+  border: solid black medium;
+  cursor: pointer;
+}
+
+.select-enigma input[type=radio]:checked + label {
+  border: solid white medium;
+}
+
+.select-enigma :not(input[type=radio]:checked) + label:hover {
+  border: dotted white medium;
+}
+
+.plus-button {
+  width: 34px;
+  height: 34px;
+  padding: 0 0;
+}
+
+.field-column {
+  flex-direction: column;
+}
+
+.field-inline {
+  width: calc(100% - 80px);
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.no-margin-left {
+  margin-left: 0px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.max-width-90 {
+  max-width: 90%;
 }
